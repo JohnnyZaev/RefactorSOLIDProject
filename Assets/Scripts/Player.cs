@@ -2,55 +2,32 @@
 
 public class Player : MonoBehaviour
 {
-    public Animator playerAnimator;
-
     public PlayerAIInteractions playerAIInteractions;
-    
     public PlayerMovement playerMovement;
-
-    public GameObject ui_window;
-
+    public PlayerInput playerInput;
+    public PlayerAnimations playerAnimations;
     public PlayerRenderer playerRenderer;
+    public UIController uiController;
     
-    private Vector2 movementVector;
-
-
     private void Start()
     {
+        playerAnimations = GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
         playerRenderer = GetComponent<PlayerRenderer>();
         playerAIInteractions = GetComponent<PlayerAIInteractions>();
-    }
-    private void Update()
-    {
-        movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementVector.Normalize();
-        if (Input.GetAxisRaw("Fire1") > 0)
-        {
-            playerAIInteractions.Interact(playerRenderer.IsSpriteFlipped);
-        }
+        playerInput = GetComponent<PlayerInput>();
+        playerInput.OnInteractEvent += () => playerAIInteractions.Interact(playerRenderer.IsSpriteFlipped);
     }
 
     private void FixedUpdate()
     {
-        MovePlayer(movementVector);
-        if (movementVector.magnitude > 0)
+        playerMovement.MovePlayer(playerInput.MovementInputVector);
+        playerRenderer.RenderPlayer(playerInput.MovementInputVector);
+        playerAnimations.SetupAnimations(playerInput.MovementInputVector);
+        if (playerInput.MovementInputVector.magnitude > 0)
         {
-            ui_window.SetActive(false);
+            uiController.ToggleUI(false);
         }
-        else
-        {
-            playerAnimator.SetBool("Walk", false);
-        }
-    }
-
-    
-
-    private void MovePlayer(Vector2 movementVector)
-    {
-        playerAnimator.SetBool("Walk", true);
-        playerMovement.MovePlayer(movementVector);
-        playerRenderer.RenderPlayer(movementVector);
     }
 
     public void ReceiveDamaged()

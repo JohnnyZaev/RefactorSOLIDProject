@@ -1,20 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class NPC_Friendly : MonoBehaviour
 {
-    public GameObject ui_window;
+    public UnityEvent<string> onSpeak;
     public AudioSource audioSource;
-    public Text textField;
     public string text = "Hi there. Look out for that KOBOLD on the other side!";
 
     public void Talk()
     {
-        ui_window.SetActive(true);
-        textField.text = text;
+        onSpeak?.Invoke(text);
         audioSource.Play();
-        
     }
 }
