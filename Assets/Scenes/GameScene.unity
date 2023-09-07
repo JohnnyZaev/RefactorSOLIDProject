@@ -892,6 +892,7 @@ GameObject:
   - component: {fileID: 837455031}
   - component: {fileID: 837455033}
   - component: {fileID: 837455034}
+  - component: {fileID: 837455035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -968,7 +969,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 815885425}
   playerRenderer: {fileID: 815885426}
   raycastPoint: {fileID: 1706832592}
-  movementSpeed: 5
+  playerMovement: {fileID: 0}
   ui_window: {fileID: 614753882}
 --- !u!82 &837455034
 AudioSource:
@@ -1066,6 +1067,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &837455035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837455029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2452f499c247b9940957f18de49c8c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
 --- !u!1 &844677121
 GameObject:
   m_ObjectHideFlags: 0

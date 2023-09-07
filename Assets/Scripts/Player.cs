@@ -10,21 +10,18 @@ public class Player : MonoBehaviour
     public SpriteRenderer playerRenderer;
 
     public Transform raycastPoint;
-    
-    public float movementSpeed;
+
+    public PlayerMovement playerMovement;
 
     public GameObject ui_window;
 
-    private Rigidbody2D rb2d;
+    
     private Vector2 movementVector;
 
-    private void Awake()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
 
     private void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         SceneManager.LoadScene("PremadeLevel", LoadSceneMode.Additive);
     }
     private void Update()
@@ -71,9 +68,7 @@ public class Player : MonoBehaviour
     private void MovePlayer(Vector2 movementVector)
     {
         playerAnimator.SetBool("Walk", true);
-        //rb2d.MovePosition(rb2d.position + movementVector * movementSpeed * Time.fixedDeltaTime);
-        rb2d.velocity = movementVector * movementSpeed;
-
+        playerMovement.MovePlayer(movementVector);
         if (Mathf.Abs(movementVector.x) > 0.1f)
             playerRenderer.flipX = Vector3.Dot(transform.right, movementVector) < 0;
     }
