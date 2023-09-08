@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public PlayerAIInteractions playerAIInteractions;
     public PlayerMovement playerMovement;
-    public PlayerInput playerInput;
+    public IMovementInput movementInput;
     public PlayerAnimations playerAnimations;
     public PlayerRenderer playerRenderer;
     public UIController uiController;
@@ -15,16 +15,16 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerRenderer = GetComponent<PlayerRenderer>();
         playerAIInteractions = GetComponent<PlayerAIInteractions>();
-        playerInput = GetComponent<PlayerInput>();
-        playerInput.OnInteractEvent += () => playerAIInteractions.Interact(playerRenderer.IsSpriteFlipped);
+        movementInput = GetComponent<IMovementInput>();
+        movementInput.OnInteractEvent += () => playerAIInteractions.Interact(playerRenderer.IsSpriteFlipped);
     }
 
     private void FixedUpdate()
     {
-        playerMovement.MovePlayer(playerInput.MovementInputVector);
-        playerRenderer.RenderPlayer(playerInput.MovementInputVector);
-        playerAnimations.SetupAnimations(playerInput.MovementInputVector);
-        if (playerInput.MovementInputVector.magnitude > 0)
+        playerMovement.MovePlayer(movementInput.MovementInputVector);
+        playerRenderer.RenderPlayer(movementInput.MovementInputVector);
+        playerAnimations.SetupAnimations(movementInput.MovementInputVector);
+        if (movementInput.MovementInputVector.magnitude > 0)
         {
             uiController.ToggleUI(false);
         }

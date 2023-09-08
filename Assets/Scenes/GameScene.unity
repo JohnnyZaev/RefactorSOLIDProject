@@ -1030,7 +1030,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAIInteractions: {fileID: 0}
   playerMovement: {fileID: 0}
-  playerInput: {fileID: 0}
   playerAnimations: {fileID: 0}
   playerRenderer: {fileID: 815885426}
   uiController: {fileID: 1985489271}
