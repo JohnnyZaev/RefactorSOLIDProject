@@ -4,18 +4,18 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AudioSource))]
 public abstract class NPC : MonoBehaviour
 {
-    public UnityEvent<string> onSpeak;
-    public AudioSource audioSource;
+    [SerializeField] private UnityEvent<string> onSpeak;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void Interact()
     {
         onSpeak?.Invoke(GetText());
-        audioSource.Play();
+        _audioSource.Play();
     }
 
     protected virtual string GetText()

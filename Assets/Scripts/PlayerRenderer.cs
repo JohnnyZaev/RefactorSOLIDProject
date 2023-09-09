@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerRenderer : MonoBehaviour
 {
-    public SpriteRenderer playerRenderer;
+    [SerializeField] private SpriteRenderer playerRenderer;
     public bool IsSpriteFlipped => playerRenderer.flipX;
 
     internal void RenderPlayer(Vector2 movementVector)

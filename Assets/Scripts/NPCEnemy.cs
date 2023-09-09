@@ -1,6 +1,8 @@
-﻿public class NPCEnemy : NPC
+﻿using UnityEngine;
+
+public class NPCEnemy : NPC
 {
-    public string text = "I deal 10 physical damage    ( •̀ᴗ•́ )و ̑̑ ";
+    [SerializeField] private string text = "I deal 10 physical damage    ( •̀ᴗ•́ )و ̑̑ ";
 
     public override void Interact()
     {

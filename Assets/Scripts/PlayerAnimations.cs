@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    public Animator playerAnimator;
+    [SerializeField] private Animator playerAnimator;
     private static readonly int Walk = Animator.StringToHash("Walk");
 
     public void SetupAnimations(Vector2 movementVector)

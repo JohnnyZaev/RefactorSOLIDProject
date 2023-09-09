@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAIInteractions : MonoBehaviour
 {
-    public Transform raycastPoint;
+    [SerializeField] private Transform raycastPoint;
     
     public void Interact(bool isSpriteFlipped)
     {

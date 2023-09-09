@@ -2,7 +2,7 @@
 
 public class PlaySounds : MonoBehaviour
 {
-    public AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     public void PlayStepSound()
     {
         audioSource.Play();
